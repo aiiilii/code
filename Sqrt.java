@@ -1,6 +1,6 @@
 public class Sqrt {
 
-    public int mySqrt(int x) {
+    public static int mySqrt(int x) {
         if (x == 0 || x == 1) {
             return x;
         }
@@ -33,5 +33,9 @@ public class Sqrt {
             result = i * i;
         }
         return (int)i - 1;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(mySqrt(4));
     }
 }
