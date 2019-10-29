@@ -36,4 +36,20 @@ public class PathSum {
         }
         return false;
     }
+
+    /**
+     * Using recursion
+     * @param root
+     * @param sum
+     * @return whether any paths from root to any leaf node traversing through the nodes, has a total that equal to the sum
+     */
+    public boolean hasPathSum2(TreeNode root, int sum) {
+        if (root == null) {
+            return false;
+        } else if (root.left == null && root.right == null && sum - root.val == 0) {
+            return true;
+        } else {
+            return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);
+        }
+    }
 }
