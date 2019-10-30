@@ -15,6 +15,7 @@ public class IntersectionOfTwoLinkedLists {
      * We traverse each list to the end, then we point the end of the list to each other's head, then traverse again. 
      * Both pointers would traverse through both lists and come out of the while loop when they reach the same node
      * Then in the second loop around, if they intersect, the pointers would be pointing to the same node.
+     * If no intersection, in the second loop around, they will both hit null and get out of the while loop returning null for pointerA meaning no intersection.
      * @param headA
      * @param headB
      * @return the intersecting node
