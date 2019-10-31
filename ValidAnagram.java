@@ -37,7 +37,7 @@ public class ValidAnagram {
             smap.put(t.charAt(i), smap.getOrDefault(t.charAt(i), 0) - 1); //** KEY PART! */
         }
         for (char c : smap.keySet()) {
-            if (smap.get(c) != 0) {
+            if (smap.get(c) != 0) { // +1 then -1 will become 0
                 return false;
             }
         }
