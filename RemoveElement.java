@@ -11,7 +11,8 @@ public class RemoveElement {
                 i++;
             }
         }
-        // i++ in the if statement causes i to be pointing at next index; thus returning i would be the length
+        // i++ in the if statement causes i to be pointing at next index; 
+        // thus returning i would be the length
         return i;
     }
 }
