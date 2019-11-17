@@ -3,6 +3,20 @@ import java.util.Arrays;
 public class MissingNumber {
 
     /**
+     * Math approach - fastest
+     * @param nums
+     * @return
+     */
+    public int missingNumber3(int[] nums) {
+        int sum = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            sum += nums[i];
+        }
+        int n = nums.length + 1;
+        return (n * (n - 1)) / 2 - sum;
+    }
+
+    /**
      * Sorting approach - slower O(nlogn)
      * @param nums
      * @return
