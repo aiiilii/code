@@ -13,10 +13,10 @@ public class ValidParentheses {
         // }
         for (char ch : s.toCharArray()) {
             if (ch == '(' || ch == '[' || ch == '{') {
-                stack.push(ch);
+                stack.push(ch); // stack only contains the left parens
             } else {
                 if (!stack.isEmpty() && isPairParenthesis(stack.peek(), ch)) {
-                    stack.pop();
+                    stack.pop(); // popping off the left paren(from the top of stack) that found a match
                 } else {
                     return false;
                 }
@@ -26,6 +26,8 @@ public class ValidParentheses {
     }
 
     private boolean isPairParenthesis(char left, char right) {
-        return left =='(' && right ==')' || left == '[' && right == ']' || left == '{' && right == '}';
+        return left =='(' && right ==')' || 
+        left == '[' && right == ']' || 
+        left == '{' && right == '}';
     }
 }
