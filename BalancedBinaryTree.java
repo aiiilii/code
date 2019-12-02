@@ -26,6 +26,6 @@ public class BalancedBinaryTree {
         if (root == null) {
             return -1;
         }
-        return Math.max(height(root.left), height(root.right)) + 1;
+        return Math.max(height(root.left), height(root.right)) + 1; // plus the edge connecting root to max of (root.left or root.right), this is the height from this root
     }
 }
