@@ -32,7 +32,7 @@ public class FirstUniqueCharacterInString {
         int [] a = new int[26];
 
         for (int i = 0; i < s.length(); i++) {
-            a[s.charAt(i) - 'a'] ++; // ascii 'a' - 'a' == 0; use this to store char into int
+            a[s.charAt(i) - 'a'] += 1; // ascii 'a' - 'a' == 0; use this to store char into int
         }
         
         for (int i = 0; i < s.length(); i++) {
