@@ -1,8 +1,8 @@
 public class ReverseLinkedList {
 
-    public class ListNode {
+    public static class ListNode {
         int val;
-        ListNode next;
+        public ListNode next;
         ListNode(int x) { val = x; }
     }
 
@@ -36,14 +36,26 @@ public class ReverseLinkedList {
      * @param head
      * @return
      */
-    public ListNode reverseList(ListNode head) {
+    public static ListNode reverseList(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
         ListNode newHeadNode = reverseList(head.next);
-        ListNode backNode = head.next;
-        backNode.next = head;
+        // ListNode backNode = head.next;
+        // backNode.next = head;
+        head.next.next = head;
         head.next = null;
         return newHeadNode;
+    }
+
+    public static void main(String[] args) {
+        ListNode node1 = new ListNode(1);
+        ListNode node2 = new ListNode(2);
+        ListNode node3 = new ListNode(3);
+        ListNode node4 = new ListNode(4);
+        node1.next = node2;
+        node2.next = node3;
+        node3.next = node4;
+        ListNode result = reverseList(node1);
     }
 }
