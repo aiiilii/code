@@ -6,7 +6,12 @@ public class ReverseLinkedList {
         ListNode(int x) { val = x; }
     }
 
-    public ListNode reverseList(ListNode head) {
+    /**
+     * Iterative approach
+     * @param head
+     * @return
+     */
+    public ListNode reverseList2(ListNode head) {
         if (head == null) {
             return null;
         }
@@ -24,5 +29,21 @@ public class ReverseLinkedList {
         }
         head = prevNode;
         return head;
+    }
+
+    /**
+     * Recursive approach
+     * @param head
+     * @return
+     */
+    public ListNode reverseList(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode newHeadNode = reverseList(head.next);
+        ListNode backNode = head.next;
+        backNode.next = head;
+        head.next = null;
+        return newHeadNode;
     }
 }
