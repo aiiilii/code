@@ -43,8 +43,9 @@ public class MergeKSortedLists {
             point.next = q.poll();
             point = point.next;
 
+            // after poll(), need to fill in the empty space, thus put in point.next
             ListNode nextNode = point.next;
-            if (nextNode != null) {
+            if (nextNode != null) { // if nextNode == null, list is at the end
                 q.offer(nextNode);
             }
         }
@@ -61,7 +62,7 @@ public class MergeKSortedLists {
      * @return
      */
     public ListNode mergeKLists2(ListNode[] lists) {
-        if (lists.length == 0) {
+        if (lists == null || lists.length == 0) {
             return null;
         }
         int interval = 1;
@@ -98,4 +99,18 @@ public class MergeKSortedLists {
         }
         return dummy.next;
     }
+
+    public static void main(String[] args) {
+        ListNode[] newList = new ListNode[0];
+        System.out.println(newList.length);
+        try {
+            ListNode[] nullArray = null;
+            System.out.println(nullArray.length);    
+        } catch (NullPointerException e) {
+            System.out.println("Null array");
+        }
+        
+
+    }
+
 }
