@@ -24,6 +24,7 @@ public class MergeKSortedLists {
         }
 
         // establish comparing method
+        //Can also have a comparator class outside
         Queue<ListNode> q = new PriorityQueue<ListNode>(lists.length, new Comparator<ListNode>() {
             @Override
             public int compare(ListNode o1, ListNode o2) {
