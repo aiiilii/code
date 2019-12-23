@@ -1,7 +1,7 @@
 public class MinDistaceBetweenBSTNodes {
 
-    Integer prev;
-    Integer ans;
+    TreeNode prev;
+    int ans;
 
     public class TreeNode {
         int val;
@@ -22,10 +22,12 @@ public class MinDistaceBetweenBSTNodes {
             return;
         }
         dfs(node.left);
+
         if (prev != null) {
-            ans = Math.min(ans, node.val - prev);
+            ans = Math.min(ans, node.val - prev.val);
         }
-        prev = node.val;
+        prev = node;
+        
         dfs(node.right);
     }
 }
