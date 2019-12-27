@@ -27,7 +27,9 @@ public class PermutationsII {
             if (used[i]) {
                 continue;
             }
-            if (i > 0 && nums[i] == nums[i - 1] && !used[i - 1]) { // (!used[i - 1]) == (used[i - 1] == false)
+            if (i > 0 && nums[i] == nums[i - 1] && !used[i - 1]) { 
+                // (!used[i - 1]) == (used[i - 1] == false) meaning that when it comes to the same numbers, 
+                // they have to be place in the same order to not have duplicates
                 continue;
             }
             used[i] = true;

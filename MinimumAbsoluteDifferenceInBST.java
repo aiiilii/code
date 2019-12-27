@@ -10,7 +10,7 @@ public class MinimumAbsoluteDifferenceInBST {
     TreeNode prev;
     int ans;
     /**
-     * With Global Value
+     * With Global Values
      * @param root
      * @return
      */
@@ -38,6 +38,7 @@ public class MinimumAbsoluteDifferenceInBST {
 
     /**
      * WITHOUT Global Value
+     * Wrapping a primitive value using an ARRAY
      * @param root
      * @return
      */
@@ -47,7 +48,7 @@ public class MinimumAbsoluteDifferenceInBST {
         return a[1];
     }
     private int[] inorder(TreeNode root, int[] a) {
-        int pre = a[0];
+        //int pre = a[0]; // Dont need this line
         int res = a[1];
         if (root == null) {
             return a;
