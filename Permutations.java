@@ -37,7 +37,7 @@ public class Permutations {
             templist.add(nums[i]);
             st.add(nums[i]);
             backtrack(res, templist, nums, st);
-            st.remove(templist.get(templist.size() - 1));
+            st.remove(templist.get(templist.size() - 1)); // have to remove from st before from templist, because if remove from templist first, then st cannot get this number anymore.
             templist.remove(templist.size() - 1);
         }
     }
