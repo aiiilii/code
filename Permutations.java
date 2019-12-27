@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Permutations {
 
-    public List<List<Integer>> permute(int[] nums) {
+    public static List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> res = new ArrayList<List<Integer>>();
 
         if (nums == null || nums.length == 0) {
@@ -17,7 +17,7 @@ public class Permutations {
         return res;
     }
 
-    private void backtrack(List<List<Integer>> res, List<Integer> templist, int[] nums, boolean[] used) {
+    private static void backtrack(List<List<Integer>> res, List<Integer> templist, int[] nums, boolean[] used) {
         if (templist.size() == nums.length) {
             res.add(new ArrayList<Integer>(templist));
             return;
@@ -33,5 +33,10 @@ public class Permutations {
             used[i] = false;
             templist.remove(templist.size() - 1);
         }
+    }
+
+    public static void main(String[] args) {
+        int[] nums = new int[] {1, 2, 3};
+        permute(nums);
     }
 }

@@ -27,7 +27,7 @@ public class PermutationsII {
             if (used[i]) {
                 continue;
             }
-            if (i > 0 && nums[i] == nums[i - 1] && !used[i - 1]) {
+            if (i > 0 && nums[i] == nums[i - 1] && !used[i - 1]) { // (!used[i - 1]) == (used[i - 1] == false)
                 continue;
             }
             used[i] = true;
