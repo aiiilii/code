@@ -23,9 +23,10 @@ public class SearchInsertPosition {
                 low = mid + 1;
             }
         }
-        // Because when high = low+1, then mid = left.
-        // If the target > nums[mid], then low = mid +1 = high. The target position can be low or high, since they are the same.
-        // But if the target < nums[mid], then high = mid - 1 = low - 1. The target position must be low, not the high.
+        // When out of the while loop, high has to be < low. 
+        // Low can be any value from 0 to nums.length - 1; high can be any value from -1 to nums.length - 2.
+        // The number at low is greater than the target, while the number at high is less than the target.
+        // What we want here is the number greater than or equal to the target, and take its index, thus return low.
         return low;
     }
 
