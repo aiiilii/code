@@ -4,16 +4,15 @@ public class Sqrt {
         if (x == 0 || x == 1) {
             return x;
         }
-        long square;
-        int mid;
-        int left = 2;
-        int right = x / 2;
+       
+        long left = 2;
+        long right = x / 2;
         while  (left <= right) {
-            mid = left + (right - left) / 2;
-            square = (long) mid * mid;
-            if (square == x) {
-                return mid;
-            } else if (square > x) {
+            long mid = left + (right - left) / 2;
+            
+            if (mid * mid == x) {
+                return (int)mid;
+            } else if (mid * mid > x) {
                 right = mid - 1;
             } else {
                 left = mid + 1;
