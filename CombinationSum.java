@@ -29,7 +29,7 @@ public class CombinationSum {
                     templist.remove(templist.size() - 1);
                     return;
                 }
-                backtracking(res, templist, candidates, remain - candidates[i], i);
+                backtracking(res, templist, candidates, remain - candidates[i], i); // start at i again because can reuse itself
                 templist.remove(templist.size() - 1);
             }
         }
