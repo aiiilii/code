@@ -25,7 +25,7 @@ public class SubarraySumEqualsK {
         for (int i = 0; i < nums.length; i++) {
             sum += nums[i];
 
-            if (mp.containsKey(sum - k)) {
+            if (mp.containsKey(sum - k)) { // if sum - k exists, means sum - (some previous number) == k; this is the definition of preSum
                 count += mp.get(sum - k);
             }
             mp.put(sum, mp.getOrDefault(sum, 0) + 1);
