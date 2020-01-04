@@ -6,14 +6,20 @@ public class FindFirstAndLastPositionOfElementInSortedArray {
             return res;
         }
         int mid = findMid(nums, target);
+
+        if (mid == -1) {
+            return res;
+        }
         
         int i = -1;
         int j = -1;
         if (mid != -1) {
             i = mid;
             j = mid;
-            while (nums[i] == target || nums[j] == target) {
+            while (i >= 0 && nums[i] == target) {
                 i--;
+            }
+            while (j < nums.length && nums[j] == target) {
                 j++;
             }
         }
@@ -35,6 +41,7 @@ public class FindFirstAndLastPositionOfElementInSortedArray {
             int m = left + (right - left) / 2;
             if (nums[m] == target) {
                 mid = m;
+                break;
             } else if (nums[m] > target) {
                 right = m - 1;
             } else {
@@ -45,7 +52,7 @@ public class FindFirstAndLastPositionOfElementInSortedArray {
     }
 
     public static void main(String[] args) {
-        int[] nums = new int[] {5, 7, 7, 8, 8, 10};
-        System.out.println(searchRange(nums, 8));
+        int[] nums = new int[] {1};
+        System.out.println(searchRange(nums, 1));
     }
 }
