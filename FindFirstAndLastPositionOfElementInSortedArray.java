@@ -1,6 +1,6 @@
 public class FindFirstAndLastPositionOfElementInSortedArray {
 
-    public int[] searchRange(int[] nums, int target) {
+    public static int[] searchRange(int[] nums, int target) {
         int[] res = new int[] {-1, -1};
         if (nums == null || nums.length == 0) {
             return res;
@@ -26,7 +26,7 @@ public class FindFirstAndLastPositionOfElementInSortedArray {
         return res;
     }
 
-    private int findMid(int[] nums, int target) {
+    private static int findMid(int[] nums, int target) {
         int mid = -1;
         int left = 0;
         int right = nums.length - 1;
@@ -42,5 +42,10 @@ public class FindFirstAndLastPositionOfElementInSortedArray {
             }
         }
         return mid;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = new int[] {5, 7, 7, 8, 8, 10};
+        System.out.println(searchRange(nums, 8));
     }
 }

@@ -24,6 +24,9 @@ public class ReverseNodesInKGroup {
         ListNode last = prev;
         for (int i = 0; i < k + 1; i++) {
             last = last.next;
+
+            // if i == k && last == null, meaning that it is the last k elements, thus still need to reverse.
+            // only when i != k  && last == null, the list has less than k elements, thus return null and stop the reversing process.
             if (i != k && last == null) {
                 return null;
             }
@@ -36,7 +39,7 @@ public class ReverseNodesInKGroup {
             curr.next = prev.next;
             prev.next = curr;
             tail.next = next;
-            curr = next;
+            curr = next; // curr needs to jump to next because now curr is in front of tail
         }
         // tail will become the next k group's prev
         return tail;
