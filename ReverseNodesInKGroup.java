@@ -6,6 +6,43 @@ public class ReverseNodesInKGroup {
         ListNode(int x) { val = x; }
     }
 
+    public ListNode reverseKGroup1(ListNode head, int k) {
+        if (head == null || head.next == null || k == 1) {
+            return head;
+        }
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode prev = dummy;
+
+        while (prev != null) {
+            prev = reverse1(prev, k);
+        }
+        return dummy.next;
+    }
+
+    private ListNode reverse1(ListNode prev, int k) {
+        ListNode last = prev;
+        for (int i = 0; i < k + 1; i++) {
+            last = last.next;
+            if (i != k && last == null) {
+                return null;
+            }
+        }
+        ListNode tail = prev.next;
+        ListNode curr = prev.next.next;
+
+        while (curr != last) {
+            ListNode next = curr.next;
+            curr.next = prev.next;
+            prev.next = curr;
+            tail.next = next;
+            curr = next;
+        }
+        // tail will become the next k group's prev
+        return tail;
+    }
+
+
     public ListNode reverseKGroup(ListNode head, int k) {
         if (head == null || head.next == null || k == 1) {
             return head;
@@ -13,7 +50,6 @@ public class ReverseNodesInKGroup {
 
         ListNode dummy = new ListNode(-1);
         dummy.next = head;
-
         ListNode begin = dummy;
 
         int i = 0;
