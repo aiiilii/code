@@ -34,11 +34,12 @@ public class ReverseNodesInKGroup {
         ListNode tail = prev.next;
         ListNode curr = prev.next.next;
 
-        while (curr != last) {
-            ListNode next = curr.next;
-            curr.next = prev.next;
-            prev.next = curr;
-            tail.next = next;
+        // reversing all the nodes between prev and last.
+        while (curr != last) { // will keep looping and move curr towards last, loop stops when curr == last
+            ListNode next = curr.next; // mark curr's next
+            curr.next = prev.next; // change curr's next by connecting curr right before prev's next
+            prev.next = curr; // connect prev's next to curr
+            tail.next = next; // tail's next was originally curr (prev.next.next) but curr moved to the front, so need to connect tail's next to the marked down curr's next, which is "next"
             curr = next; // curr needs to jump to next because now curr is in front of tail
         }
         // tail will become the next k group's prev

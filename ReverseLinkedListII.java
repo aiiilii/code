@@ -18,6 +18,7 @@ public class ReverseLinkedListII {
         ListNode mNode = dummy;
         ListNode nNode = dummy;
 
+        // move preM, mNode and nNode to their respective positions
         for (int i = 0; i < m; i++) {
             preM = mNode;
             mNode = mNode.next;
@@ -26,11 +27,12 @@ public class ReverseLinkedListII {
             nNode = nNode.next;
         }
 
-        while (mNode != nNode) {
-            preM.next = mNode.next;
-            mNode.next = nNode.next;
-            nNode.next = mNode;
-            mNode = preM.next; // re starting the process by making mNode the node that is after preM
+        // keep moving mNode to after nNode until mNode and nNode meet up
+        while (mNode != nNode) { // loops stops when mNode == nNode
+            preM.next = mNode.next; // skipping mNode
+            mNode.next = nNode.next; // connecting mNode to nNode's next, putting mNode after nNode
+            nNode.next = mNode; // connecting nNode's next to mNode
+            mNode = preM.next; // re starting the process by making mNode the node that is after preM, which is the node that is connecting to preM after skipping mNode
         }
         return dummy.next;
     }
