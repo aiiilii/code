@@ -30,7 +30,7 @@ public class ReverseLinkedListII {
             preM.next = mNode.next;
             mNode.next = nNode.next;
             nNode.next = mNode;
-            mNode = preM.next;
+            mNode = preM.next; // re starting the process by making mNode the node that is after preM
         }
         return dummy.next;
     }
