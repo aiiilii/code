@@ -29,7 +29,7 @@ public class RotateImage {
 
         // transpose matrix
         for (int i = 0; i < n; i++) {
-            for (int j = i; j < n; j++) {
+            for (int j = i; j < n; j++) { // j start at i because if j start at 0, then the swap would repeat itself and swap back.
                 int temp = matrix[i][j];
                 matrix[i][j] = matrix[j][i];
                 matrix[j][i] = temp;
