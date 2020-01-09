@@ -14,8 +14,8 @@ public class MergeIntervals {
 
         List<int[]> list = new ArrayList<int[]>();
         
-        int start = intervals[0][0];
-        int end = intervals[0][1];
+        int start = intervals[0][0]; // initiallize start to be the first number of first array
+        int end = intervals[0][1]; // initiallize end to be the second number of first array
 
         for (int[] interval : intervals) {
             if (interval[0] <= end) {
