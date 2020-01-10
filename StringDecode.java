@@ -15,19 +15,19 @@ public class StringDecode {
         int i = 0;
         int j = i + 1;
         while (i < s.length()) {
-            if (j >= s.length()) {
+            if (j >= s.length()) { // taking care of the last char, when j goes out of bound, immediately add charAt(i) and break
                 sb.append(s.charAt(i));
                 break;
-            } else if (s.charAt(j) == s.charAt(i)) {
+            } else if (s.charAt(j) == s.charAt(i)) {// "aa" or "aabb"
                 sb.append(s.substring(i, j + 1));
                 i = j + 1;
                 j = i + 1;
-            } else if (s.charAt(j) < '0' || s.charAt(j) > '9') {
+            } else if (s.charAt(j) < '0' || s.charAt(j) > '9') { // "abc"
                 sb.append(s.charAt(i));
                 i = j;
                 j = j + 1;
             } else {
-                while (j < s.length() && s.charAt(j) >= '0' && s.charAt(j) <= '9') {
+                while (j < s.length() && s.charAt(j) >= '0' && s.charAt(j) <= '9') { // normal case: "a4b3"
                     j ++;
                 }
                 String num = s.substring(i + 1, j);
