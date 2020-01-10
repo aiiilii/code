@@ -83,5 +83,6 @@ public class StringDecode {
         String s = "a4b3ccd4";
         String a = "aab";
         System.out.println(decode1(a));
+        System.out.println(decode1(s));
     }
 }

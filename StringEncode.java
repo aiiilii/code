@@ -40,5 +40,6 @@ public class StringEncode {
         String s = "aaaabbbccdddd";
         String a = "aabbc";
         System.out.println(encode(a));
+        System.out.println(encode(s));
     }
 }
