@@ -16,8 +16,8 @@ public class StringEncode {
 
         int i = 0; //slow pointer
         int j = 0; //fast window creating pointer
-        while (i < s.length() - 1) {
-            if (s.charAt(j) == s.charAt(j + 1)) {
+        while (i < s.length()) {
+            if (j + 1 < s.length() && s.charAt(j) == s.charAt(j + 1)) {
                 count ++;
                 j++;
             } else {
@@ -38,6 +38,7 @@ public class StringEncode {
 
     public static void main(String[] args) {
         String s = "aaaabbbccdddd";
-        System.out.println(encode(s));
+        String a = "aabbc";
+        System.out.println(encode(a));
     }
 }
