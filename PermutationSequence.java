@@ -3,6 +3,30 @@ import java.util.List;
 
 public class PermutationSequence {
 
+    public String getPermutation1(int n, int k) {
+        char[] res = new char[n];
+        ArrayList<Integer> nums = new ArrayList<Integer>();
+        int[] factorial = new int[n];
+
+        factorial[0] = 1;
+        for (int i = 1; i < n; i++) {
+            factorial[i] = factorial[i - 1] * i;
+        }
+
+        // Create a number list that contains all of the possible numbers
+        for (int i = 1; i <= n; i++) {
+            nums.add(i);
+        }
+
+        k--; // to make k zero based
+
+        for (int i = 0; i < n; i++) {
+            res[i] = Character.forDigit(nums.remove(k / factorial[n - i - 1]), 10); // 10 based system
+            k = k % factorial[n - 1 - i];
+        }
+        return new String(res);
+    }
+
     /**
      * A lot faster
      * Time: O(N^2), because to delete elements from the list in a loop one has to perform N + (N - 1) + ... + 1 = N(N - 1)/2N+(N−1)+...+1=N(N−1)/2 operations.

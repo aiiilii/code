@@ -19,7 +19,9 @@ public class RotateList {
             len ++;
         }
 
-        fast = head; // fast goes back to head in order to start together with slow;
+        fast = head; // fast goes back to head
+        
+        // fast goes first to (k % len) position then slow follows
         for (int i = 0; i < k % len; i++) { // taking care of cases if k is larger than len
             fast = fast.next;
         }
@@ -27,7 +29,7 @@ public class RotateList {
             fast = fast.next;
             slow = slow.next;
         }
-        
+
         fast.next = head;
         head = slow.next;
         slow.next = null;
