@@ -10,7 +10,7 @@ public class PermutationSequence {
 
         factorial[0] = 1;
         for (int i = 1; i < n; i++) {
-            factorial[i] = factorial[i - 1] * i;
+            factorial[i] = factorial[i - 1] * i; // 5! = 4! * 5
         }
 
         // Create a number list that contains all of the possible numbers
@@ -21,8 +21,11 @@ public class PermutationSequence {
         k--; // to make k zero based
 
         for (int i = 0; i < n; i++) {
-            res[i] = Character.forDigit(nums.remove(k / factorial[n - i - 1]), 10); // 10 based system
-            k = k % factorial[n - 1 - i];
+            // Adding chars to res from the highest digit to the lowest digit.
+            // (n - i - 1) is the number of digits left remaining, factorial of (n - i - 1) will get the number of permutations per subgroup
+            // k / factorial[n - i - 1] will give the index at which it is in our nums arraylist, so we remove it from nums arraylist and put it at res[i]
+            res[i] = Character.forDigit(nums.remove(k / factorial[n - i - 1]), 10); // changing the removed number into ascii, based 10 system
+            k = k % factorial[n - 1 - i]; // update k by k dividing the permutations count in each subgroup, so we can start the next round as we have gotten the highest digit number already;
         }
         return new String(res);
     }
