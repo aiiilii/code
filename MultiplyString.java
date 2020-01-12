@@ -1,6 +1,6 @@
 public class MultiplyString {
 
-    public String multiply(String num1, String num2) {
+    public static String multiply(String num1, String num2) {
         if (num1.equals("0") || num2.equals("0")) {
             return "0";
         }
@@ -32,5 +32,11 @@ public class MultiplyString {
             sb.deleteCharAt(0);
         }
         return sb.toString();
+    }
+
+    public static void main(String[] args) {
+        String num1 = "999";
+        String num2 = "998";
+        System.out.println(multiply(num1, num2));
     }
 }
