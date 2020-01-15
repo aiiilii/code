@@ -3,6 +3,38 @@ import java.util.Comparator;
 
 public class MeetingRooms {
 
+    /**
+     * Faster
+     * @param intervals
+     * @return
+     */
+    public boolean canAttendMeetings1(int[][] intervals) {
+        if (intervals == null || intervals.length == 0) {
+            return true;
+        }
+
+        int[] start = new int[intervals.length];
+        int[] end = new int[intervals.length];
+
+        for (int i = 0; i < intervals.length; i++) {
+            start[i] = intervals[i][0];
+            end[i] = intervals[i][1];
+        }
+
+        Arrays.sort(start);
+        Arrays.sort(end);
+
+        for (int i = 1; i < start.length; i++) {
+            if (start[i] < end[i - 1]) { // next start before last end;
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+
+
     public boolean canAttendMeetings(int[][] intervals) {
         Arrays.sort(intervals, new SortIntArray());
 
@@ -20,4 +52,5 @@ public class MeetingRooms {
             return a[0] - b[0];
         }
     }
+
 }
