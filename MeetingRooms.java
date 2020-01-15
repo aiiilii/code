@@ -24,8 +24,8 @@ public class MeetingRooms {
         Arrays.sort(start);
         Arrays.sort(end);
 
-        for (int i = 1; i < start.length; i++) {
-            if (start[i] < end[i - 1]) { // next start before last end;
+        for (int i = 0; i < start.length - 1; i++) {
+            if (end[i] > start[i + 1]) { // next start before last end;
                 return false;
             }
         }
