@@ -16,7 +16,7 @@ public class ReorderDataInLogFiles {
      */
     public String[] reorderLogFiles(String[] logs) {
         Arrays.sort(logs, (s1, s2) -> {
-            String[] split1 = s1.split(" ", 2);
+            String[] split1 = s1.split(" ", 2); // when reach the first " ", split into two strings
             String[] split2 = s2.split(" ", 2);
 
             boolean isDigit1 = Character.isDigit(split1[1].charAt(0));
