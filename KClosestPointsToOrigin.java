@@ -58,8 +58,8 @@ public class KClosestPointsToOrigin {
 
         int[][] res = new int[K][2];
         while (K > 0) {
-            res[K] = maxHeap.poll();
             K--;
+            res[K] = maxHeap.poll();
         }
         return res;
     }

@@ -38,8 +38,8 @@ public class WordBreak {
         dp[0] = true;
         for (int i = 1; i <= s.length(); i++) {
             for (int j = 0; j < i; j++) {
-                if (dp[j] && wordDictSet.contains(s.substring(j, i))) {
-                    dp[i] = true;
+                if (dp[j] && wordDictSet.contains(s.substring(j, i))) { //if dp[j], which is the left segment (s[0, j - 1]), is true and wordDick.contains s[j, i - 1], which means the right segment is true,
+                    dp[i] = true; // then dp[i], which is the whole segment, is also true;
                     break;
                 }
             }
