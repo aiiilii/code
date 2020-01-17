@@ -8,16 +8,18 @@ public class CoinChange {
         Arrays.fill(dp, amount + 1);
 
         dp[0] = 0;
-        for (int i = 0; i <= amount ; i++) {
-            for (int j = 0; j < coins.length; j++) {
-                if (coins[j] <= i) {
-                    dp[i] = Math.min(dp[i], 1 + dp[i - coins[j]]);
+        for (int i = 0; i <= amount ; i++) { // our target amount;
+            for (int j = 0; j < coins.length; j++) { // the coin that we are taking;
+                if (coins[j] <= i) { // if the current coin we are taking is less than the target amount
+                    dp[i] = Math.min(dp[i], 1 + dp[i - coins[j]]); // if we take that coin, thus +1 to dp[previously taken amount]
                 } else {
                     break;
                 }
             }
         }
-        if (dp[amount] <= amount) {
+        // have we ever modified dp[amount] to something that is lower than (amount + 1),
+        // if we have, return it, if not return -1
+        if (dp[amount] <= amount) { // same as (dp[amount] < amount + 1)
             return dp[amount];
         } else {
             return -1;
