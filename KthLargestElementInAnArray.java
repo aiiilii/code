@@ -13,7 +13,7 @@ public class KthLargestElementInAnArray {
      * @return
      */
     public int findKthLargest(int[] nums, int k) {
-        Queue<Integer> minHeap = new PriorityQueue<Integer>((n1, n2) -> n1 - n2);
+        Queue<Integer> minHeap = new PriorityQueue<Integer>((n1, n2) -> n1 - n2); // lambda notation; can also use comparator class;
         
         for (int n : nums) {
             minHeap.offer(n); // put each n into the priorityQueue;
