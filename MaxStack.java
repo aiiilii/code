@@ -28,6 +28,10 @@ public class MaxStack {
         head.prev = head;
     }
 
+    /**
+     * Time - O(log n)
+     * @param x
+     */
     public void push(int x) {
         ListNode node = new ListNode(x);
         node.next = head;
@@ -37,6 +41,10 @@ public class MaxStack {
         map.computeIfAbsent(x, k -> new LinkedList<ListNode>()).add(node);
     }
 
+    /**
+     * Time - O(log n)
+     * @return
+     */
     public int pop() {
         ListNode tail = head.prev;
         if (tail == head) {
@@ -51,14 +59,26 @@ public class MaxStack {
         return tail.val;
     }
 
+    /**
+     * Time - O(1)
+     * @return
+     */
     public int top() {
         return head.prev.val;
     }
 
+    /**
+     * Time - O(log n)
+     * @return
+     */
     public int peekMax() {
         return map.lastKey();
     }
 
+    /**
+     * Time - O(log n)
+     * @return
+     */
     public int popMax() {
         int max = peekMax();
         ListNode node = map.get(max).removeLast();
