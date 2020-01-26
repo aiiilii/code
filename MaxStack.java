@@ -16,6 +16,7 @@ public class MaxStack {
     }
 
     final ListNode head;
+    final ListNode tail;
     final TreeMap<Integer, LinkedList<ListNode>> map;
 
     /**
@@ -23,9 +24,10 @@ public class MaxStack {
      */
     public MaxStack() {
         head = new ListNode(0);
+        tail = new ListNode(0);
         map = new TreeMap<Integer, LinkedList<ListNode>>();
-        head.next = head;
-        head.prev = head;
+        head.next = tail;
+        tail.prev = head;
     }
 
     /**
@@ -34,10 +36,10 @@ public class MaxStack {
      */
     public void push(int x) {
         ListNode node = new ListNode(x);
-        node.next = head;
-        node.prev = head.prev;
-        head.prev.next = node;
-        head.prev = node;
+        node.next = head.next;
+        head.next.prev = node;
+        node.prev = head;
+        head.next = node;
         map.computeIfAbsent(x, k -> new LinkedList<ListNode>()).add(node);
     }
 
@@ -46,17 +48,17 @@ public class MaxStack {
      * @return
      */
     public int pop() {
-        ListNode tail = head.prev;
-        if (tail == head) {
+        ListNode popNode = head.next;
+        if (popNode == head) {
             return 0;
         }
-        deleteNode(tail);
+        deleteNode(popNode);
 
-        map.get(tail.val).removeLast();
-        if (map.get(tail.val).isEmpty()) {
-            map.remove(tail.val);
+        map.get(popNode.val).removeLast();
+        if (map.get(popNode.val).isEmpty()) {
+            map.remove(popNode.val);
         }
-        return tail.val;
+        return popNode.val;
     }
 
     /**
@@ -64,7 +66,7 @@ public class MaxStack {
      * @return
      */
     public int top() {
-        return head.prev.val;
+        return head.next.val;
     }
 
     /**
