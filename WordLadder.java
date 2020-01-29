@@ -64,7 +64,7 @@ public class WordLadder {
     }
 
 
-    Map<String, List<String>> map = new HashMap<String, List<String>>();
+    public static Map<String, List<String>> map = new HashMap<String, List<String>>();
     /**
      * Super slow haha
      * @param beginWord
@@ -72,7 +72,7 @@ public class WordLadder {
      * @param wordList
      * @return
      */
-    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+    public static int ladderLength(String beginWord, String endWord, List<String> wordList) {
         if (beginWord.equals(endWord)) {
             return 0;
         }
@@ -82,7 +82,7 @@ public class WordLadder {
 
         queue.offer(beginWord);
         doneSet.add(beginWord);
-        int steps = 1;
+        int steps = 1; // start from 1 because asking for the total length, which includes the beginWord, not how many steps;
 
         while (queue.size() != 0) {
             int size = queue.size();
@@ -104,17 +104,17 @@ public class WordLadder {
         return 0;
     }
 
-    private void buildMap(List<String> wordList, String beginWord) {
+    private static void buildMap(List<String> wordList, String beginWord) {
         for (String str : wordList) {
             List<String> newList = new LinkedList<String>();
-            map.put(str, newList);
+            map.put(str, newList); // add each str and an empty list<String> into the map;
             for (String next : wordList) {
                 if (diff(str, next) == 1) {
-                    map.get(str).add(next);
+                    map.get(str).add(next); // if the difference between the two words is 1 letter, then add it to the list<String>;
                 }
             }
         }
-        if (!map.containsKey(beginWord)) {
+        if (!map.containsKey(beginWord)) { // if beginWord is not in the wordList already, then add it to the map as well;
             List<String> newList = new LinkedList<String>();
             map.put(beginWord, newList);
             for (String str : wordList) {
@@ -125,7 +125,7 @@ public class WordLadder {
         }
     }
 
-    private int diff(String s, String t) {
+    private static int diff(String s, String t) {
         int count = 0;
         for (int i = 0; i < s.length(); i++) {
             if (s.charAt(i) != t.charAt(i)) {
@@ -133,5 +133,15 @@ public class WordLadder {
             }
         }
         return count;
+    }
+
+    public static void main(String[] args) {
+        String beginWord = "hit";
+        String endWord = "hot";
+        List<String> wordList = new LinkedList<>();
+        wordList.add("hot");
+        wordList.add("dot");
+        wordList.add("dog");
+        System.out.println(ladderLength(beginWord, endWord, wordList));
     }
 }
