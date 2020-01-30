@@ -1,5 +1,6 @@
 import java.util.LinkedList;
 import java.util.TreeMap;
+import java.util.Stack;
 
 public class MaxStack {
 
@@ -87,6 +88,58 @@ public class MaxStack {
         deleteNode(node);
         if (map.get(max).isEmpty()) {
             map.remove(max);
+        }
+        return max;
+    }
+
+
+
+    Stack<Integer> stack = new Stack<Integer>();
+    Stack<Integer> maxStack = new Stack<Integer>();
+    /**
+     * Using TWO STACKS
+     */
+    // public MaxStack() {
+
+    // }
+
+    public void push1(int x) {
+        int max = Integer.MIN_VALUE;
+        if (maxStack.isEmpty()) {
+            max = x;
+        } else {
+            max = maxStack.peek();
+        }
+        if (max > x) {
+            maxStack.push(max);
+        } else {
+            maxStack.push(x);
+        }
+        stack.push(x);
+    }
+
+    public int pop1() {
+        maxStack.pop();
+        return stack.pop();
+    }
+
+    public int top1() {
+        return stack.peek();
+    }
+
+    public int peekMax1() {
+        return maxStack.peek();
+    }
+
+    public int popMax1() {
+        int max = peekMax1();
+        Stack<Integer>buffer = new Stack<Integer>();
+        while (top1() != max) {
+            buffer.push(pop1());
+        }
+        pop(); // for the top that == max;
+        while (!buffer.isEmpty()) {
+            push1(buffer.pop());
         }
         return max;
     }
