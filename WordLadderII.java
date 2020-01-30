@@ -39,7 +39,7 @@ public class WordLadderII {
 
     public void diff(String s, Set<String> wordSet) {
         for (int i = 0; i < s.length(); i++) {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder(s);
             char curr = sb.charAt(i);
             for (char c = 'a'; c <= 'z'; c++) {
                 if (curr != c) {
