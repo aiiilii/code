@@ -16,7 +16,7 @@ public class WordLadderII {
         buildMap(wordList, beginWord);
         int minLength = bfs(beginWord, endWord, wordList);
         doneSet.clear();
-        List<String> currList = new LinkedList<String>();
+        LinkedList<String> currList = new LinkedList<String>();
         List<List<String>> result = new LinkedList<List<String>>();
         currList.add(endWord);
         doneSet.add(endWord);
@@ -84,7 +84,7 @@ public class WordLadderII {
         return 0;
     }
 
-    public void DFS(List<String> currList, List<List<String>> result, String target, int minLength, int currDepth) {
+    public void DFS(LinkedList<String> currList, List<List<String>> result, String target, int minLength, int currDepth) {
         String currString = currList.get(0);
         if (currList.size() > minLength) {
             return;
@@ -99,7 +99,7 @@ public class WordLadderII {
                     doneSet.add(str);
                     DFS(currList, result, target, minLength, currDepth + 1);
                     doneSet.remove(str);
-                    currList.removeFirst(str);
+                    currList.removeFirst();
                 }
             }
         }
