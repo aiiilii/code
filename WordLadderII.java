@@ -30,6 +30,8 @@ public class WordLadderII {
         return res;
     }
 
+    // BFS: Trace every node's distance from the start node;
+    // add node distance into distance map and add neighbors into nodeNeighbors map
     private void bfs(String start, String end, Set<String> dict, Map<String, ArrayList<String>> nodeNeighbors, Map<String, Integer> distance) {
         for (String str : dict) {
             nodeNeighbors.put(str, new ArrayList<String>());
@@ -48,10 +50,10 @@ public class WordLadderII {
 
                 for (String neighbor : neighbors) {
                     nodeNeighbors.get(curr).add(neighbor);
-                    if (!distance.containsKey(neighbor)) {
+                    if (!distance.containsKey(neighbor)) { // check if visited
                         distance.put(neighbor, currDistance + 1);
-                        if (end.equals(neighbor)) {
-                            foundEnd = true;
+                        if (end.equals(neighbor)) { // found the shortes path, which is the shortest distance;
+                            foundEnd = true; 
                         } else {
                             queue.offer(neighbor);
                         }
@@ -64,6 +66,7 @@ public class WordLadderII {
         }
     }
 
+    // Neighbors are the next level nodes
     private ArrayList<String> getNeighbors(String curr, Set<String> dict) {
         ArrayList<String> neighbors = new ArrayList<String>();
         char[] chars = curr.toCharArray();
@@ -84,13 +87,14 @@ public class WordLadderII {
         return neighbors;
     }
 
+    // DFS: dfs all paths with the shortest distance;
     private void dfs(String curr, String end, Set<String> dict, Map<String, ArrayList<String>> nodeNeighbors, Map<String, Integer> distance, List<String> templist, List<List<String>> res) {
         templist.add(curr);
         if (end.equals(curr)) {
             res.add(new ArrayList<String>(templist));
         } else {
             for (String next : nodeNeighbors.get(curr)) {
-                if (distance.get(next) == distance.get(curr) + 1) {
+                if (distance.get(next) == distance.get(curr) + 1) { // the next string should only be 1 distance away from the curr string
                     dfs(next, end, dict, nodeNeighbors, distance, templist, res);
                 }
             }
