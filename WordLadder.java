@@ -9,7 +9,9 @@ import java.util.Set;
 public class WordLadder {
 
     /**
-     * Fast
+     * Bidirectional BFS - Super Fast
+     * Time: O(N * M)
+     * Space: O(M * N)
      * @param beginWord
      * @param endWord
      * @param wordList
@@ -30,14 +32,14 @@ public class WordLadder {
         end.add(endWord);
         dict.remove(beginWord);
         dict.remove(endWord);
-        int step = 2;
+        int step = 2; // 1 step from the front and 1 step from the back;
 
         while (!begin.isEmpty()) {
-            Set<String> temp = new HashSet<String>();
+            Set<String> temp = new HashSet<String>(); // saving intermediate sets;
             for (String word : begin) {
                 char[] chars = word.toCharArray();
                 for (int i = 0; i < chars.length; i++) {
-                    char orig = chars[i];
+                    char orig = chars[i]; // storing the original letter so can change back after changing that letter with 'a' to 'z';
                     for (char c = 'a'; c <= 'z'; c++) {
                         chars[i] = c;
                         String newWord = new String(chars);
@@ -45,7 +47,7 @@ public class WordLadder {
                             return step;
                         }
                         if (dict.contains(newWord)) {
-                            temp.add(newWord);
+                            temp.add(newWord); // add into the intermediate set;
                             dict.remove(newWord);
                         }
                     }
@@ -53,9 +55,9 @@ public class WordLadder {
                 }
             }
             step ++;
-            if (temp.size() <= end.size()) {
-                begin = temp;
-            } else {
+            if (temp.size() <= end.size()) { // always begin using the smaller sized set;
+                begin = temp; 
+            } else { // swap begin to the end and the end to temp, if temp.size() > end.size();
                 begin = end;
                 end = temp;
             }
@@ -67,6 +69,8 @@ public class WordLadder {
     public static Map<String, List<String>> map = new HashMap<String, List<String>>();
     /**
      * Super slow haha
+     * Time - O(N ^ 3)
+     * Space - O(M * N)
      * @param beginWord
      * @param endWord
      * @param wordList

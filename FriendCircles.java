@@ -16,8 +16,8 @@ public class FriendCircles {
 
         for (int i =0; i < M.length; i++) {
             if (visited[i] == 0) {
-                count ++;
                 dfs(M, visited, i);
+                count ++;
             }
         }
         return count;
