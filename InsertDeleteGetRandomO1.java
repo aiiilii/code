@@ -19,7 +19,7 @@ public class InsertDeleteGetRandomO1 {
 
     /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
     public boolean insert(int val) {
-        if (map.containsKey(val)) {
+        if (map.containsKey(val)) { // if exists in the map already, then return false, because cannot insert again;
             return false;
         } else {
             nums.add(val);
@@ -34,10 +34,10 @@ public class InsertDeleteGetRandomO1 {
             return false;
         }
         int index = map.get(val);
-        if (index < nums.size() - 1) {
+        if (index < nums.size() - 1) { // if the index is not the last index
             int lastVal = nums.get(nums.size() - 1);
             nums.set(index, lastVal); // override the val at index with lastVal
-            map.put(lastVal, index); // put the overrode lastVal/index pair into the map
+            map.put(lastVal, index); // put the last val's current index into the map;
         }
         map.remove(val);
         nums.remove(nums.size() - 1); // removing the last one of an arrayList only costs O(1) time
@@ -46,6 +46,6 @@ public class InsertDeleteGetRandomO1 {
 
     /** Get a random element from the set. */
     public int getRandom() {
-        return nums.get(rand.nextInt(nums.size()));
+        return nums.get(rand.nextInt(nums.size())); // if size == 7, then will get random index of 0-6;
     }
 }
