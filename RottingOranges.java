@@ -1,7 +1,67 @@
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Map;
+import java.util.HashMap;
 
 public class RottingOranges {
+
+    // directions mapping;
+    int[] dr = new int[] {-1, 0, 1, 0}; 
+    int[] dc = new int[] {0, -1, 0, 1};
+    /**
+     * BFS
+     * Time - O(n)
+     * Space - O(n)
+     * @param grid
+     * @return
+     */
+    public int orangesRotting1(int[][] grid) {
+        int rows = grid.length;
+        int columns = grid[0].length;
+
+        Queue<Integer> queue = new LinkedList<Integer>();
+        Map<Integer, Integer> depth = new HashMap<Integer, Integer>();
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                if (grid[i][j] == 2) {
+                    int code = i * columns + j;
+                    queue.offer(code);
+                    depth.put(code, 0);
+                }
+            }
+        }
+
+        int ans = 0;
+
+        while (!queue.isEmpty()) {
+            int code = queue.poll();
+            int R = code / columns;
+            int C = code % columns;
+
+            for (int k = 0; k < 4; k++) { // for the 4 directions;
+                int newR = R + dr[k];
+                int newC = C + dc[k];
+                if (0 <= newR && newR < rows && 0 <= newC && newC < columns && grid[newR][newC] == 1) { // not out of bounds and orange is fresh
+                    grid[newR][newC] = 2; // make it rotten
+                    int newCode = newR * columns + newC;
+                    queue.offer(newCode);
+                    depth.put(newCode, depth.get(code) + 1); // plus 1 more day;
+                    ans = depth.get(newCode);
+                }
+            }
+        }
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                if (grid[i][j] == 1) { // if there is still fresh orange, meaning cannot rot all fresh oranges;
+                    return -1;
+                }
+            }
+        } 
+        return ans;
+    }
+
 
     /**
      * Faster
