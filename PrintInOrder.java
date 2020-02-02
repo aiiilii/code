@@ -57,6 +57,7 @@ public class PrintInOrder {
 
         while (firstJobDone.get() != 1) {
             // waiting for the first job to be done.
+            Thread.sleep(10);
         }
         // printSecond.run() outputs "second". Do not change or remove this line.
         printSecond.run();
@@ -67,6 +68,7 @@ public class PrintInOrder {
 
         while (secondJobDone.get() != 1) {
             // waiting for the second job to be done;
+            Thread.sleep(10);
         }
         // printThird.run() outputs "third". Do not change or remove this line.
         printThird.run();
