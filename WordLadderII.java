@@ -81,8 +81,8 @@ public class WordLadderII {
                 if (dict.contains(String.valueOf(chars))) {
                     neighbors.add(String.valueOf(chars));
                 }
-                chars[i] = orig;
             }
+            chars[i] = orig;
         }
         return neighbors;
     }
