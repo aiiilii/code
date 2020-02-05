@@ -1,5 +1,13 @@
 public class ImplementStrStr {
 
+    /**
+     * Two pointer
+     * Time - O((H - N) * N)
+     * Space - O(1)
+     * @param haystack
+     * @param needle
+     * @return
+     */
     public int strStr(String haystack, String needle) {
         int N = needle.length();
         int H = haystack.length();
