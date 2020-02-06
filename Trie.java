@@ -3,7 +3,7 @@ public class Trie {
     public class TrieNode {
         char val;
         boolean isWord;
-        TrieNode[] children = new TrieNode[26];
+        TrieNode[] children = new TrieNode[26]; // another way of hashmaping;
         TrieNode() {}
         TrieNode(char c) { val = c; }
     }
