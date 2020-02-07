@@ -46,31 +46,31 @@ public class IntegerToEnglishWords {
 
         StringBuilder sb = new StringBuilder();
 
-        if (num / 1000000000 > 0) {
+        if (num / 1000000000 > 0) { // if num < billion, then (num / billion) == 0; this would only run if num is greater than or equal to billion;
             sb.append(onesMap.get(num / 1000000000)).append(" ").append(billion);
             if (num % 1000000000 > 0) {
                 sb.append(" ");
             }
-            num = num % 1000000000;
+            num = num % 1000000000; // take out the billionth digits in the num;
         }
 
-        if (num / 1000000 > 0) {
+        if (num / 1000000 > 0) { // if num < million, then (num / million) == 0; this would only run if num is greater than or equal to million;
             sb.append(parseThree(num / 1000000, teensMap, onesMap, tensMap)).append(" ").append(million);
             if (num % 1000000 > 0) {
-                sb.append(" ");
+                sb.append(" "); 
             }
-            num = num % 1000000;
+            num = num % 1000000; // take out the millionth digits in the num;
         }
 
-        if (num / 1000 > 0) {
+        if (num / 1000 > 0) { // if num < thousand, then (num / thousand) == 0; this would only run if num is greater than or equal to thousand;
             sb.append(parseThree(num / 1000, teensMap, onesMap, tensMap)).append(" ").append(thousand);
             if (num % 1000 > 0) {
-                sb.append(" ");
+                sb.append(" "); 
             }
-            num = num % 1000;
+            num = num % 1000; // take out the thousandth digits in the num;
         }
 
-        String str = parseThree(num, teensMap, onesMap, tensMap);
+        String str = parseThree(num, teensMap, onesMap, tensMap); // when there are three numbers or less left
         sb.append(str);
         return sb.toString();
     }
@@ -79,12 +79,12 @@ public class IntegerToEnglishWords {
         StringBuilder sb = new StringBuilder();
 
         if (i >= 100) {
-            sb.append(onesMap.get(i / 100)).append(" ").append("Hundred");
+            sb.append(onesMap.get(i / 100)).append(" ").append("Hundred"); // take care of hundredth digit
             if (i % 100 > 0) {
-                return sb.append(" ").append(parseTwo(i % 100, teensMap, onesMap, tensMap)).toString();
+                return sb.append(" ").append(parseTwo(i % 100, teensMap, onesMap, tensMap)).toString(); // then take care of the two remaining digits
             }
         }
-        if (i % 100 > 0) {
+        if (i % 100 > 0) { // no hundredth digit, then directly take care of two remaining digits
             return sb.append(parseTwo(i % 100, teensMap, onesMap, tensMap)).toString();
         }
         return sb.toString();
@@ -99,9 +99,9 @@ public class IntegerToEnglishWords {
         if (i <= 19) {
             return sb.append(teensMap.get(i)).toString();
         }
-        sb.append(tensMap.get(i / 10));
+        sb.append(tensMap.get(i / 10)); // for numbers greater than 19, need to take out tenth digit,
 
-        if (i % 10 > 0) {
+        if (i % 10 > 0) { // then process oneth digit if there is a remainder.
             sb.append(" ").append(onesMap.get(i % 10));
         }
         return sb.toString();
