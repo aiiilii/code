@@ -23,6 +23,8 @@ public class AddAndSearchWordDataStructure {
         temp.isWord = true;
     }
 
+    // Returns if the word is in the data structure.
+    // A word could contain the dot character '.' to represent any one letter.
     public boolean search(String word) {
         return match(word.toCharArray(), 0, root);
     }
@@ -33,7 +35,7 @@ public class AddAndSearchWordDataStructure {
         }
         if (chars[k] == '.') {
             for (int i = 0; i < temp.children.length; i++) {
-                if (temp.children[i] != null && match(chars, k+ 1, temp.children[i])) {
+                if (temp.children[i] != null && match(chars, k + 1, temp.children[i])) {
                     return true;
                 }
             }
