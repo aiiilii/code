@@ -34,7 +34,7 @@ public class AddAndSearchWordDataStructure {
             return temp.isWord;
         }
         if (chars[k] == '.') {
-            for (int i = 0; i < temp.children.length; i++) {
+            for (int i = 0; i < temp.children.length; i++) { // temp.children.lenth == 26, checking all children to see if present
                 if (temp.children[i] != null && match(chars, k + 1, temp.children[i])) {
                     return true;
                 }
@@ -43,5 +43,13 @@ public class AddAndSearchWordDataStructure {
             return temp.children[chars[k] - 'a'] != null && match(chars, k + 1, temp.children[chars[k] - 'a']);
         }
         return false;
+    }
+
+    public static void main(String[] args) {
+        AddAndSearchWordDataStructure s = new AddAndSearchWordDataStructure();
+        s.addWord("bad");
+        s.addWord("dad");
+        s.addWord("mad");
+        System.out.println(s.search("b.."));
     }
 }
