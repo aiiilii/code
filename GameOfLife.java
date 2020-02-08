@@ -17,7 +17,7 @@ public class GameOfLife {
         int rows = board.length;
         int cols = board[0].length;
         
-        int[][] copyBoard = new int[rows][cols]; // create a copy of the original board;
+        int[][] copyBoard = new int[rows][cols]; // create a copy of the original board, because cannot update board one value by one value;
 
         for (int row = 0; row < rows; row ++) {
             for (int col = 0; col < cols; col ++) {
@@ -32,8 +32,8 @@ public class GameOfLife {
 
                 for (int i = 0; i < 3; i++) {
                     for (int j = 0; j < 3; j++) {
-                        if (!(neighbors[i] == 0 && neighbors[j] == 0)) {
-                            int r = (row + neighbors[i]);
+                        if (!(neighbors[i] == 0 && neighbors[j] == 0)) { // if does not equal to center self,
+                            int r = (row + neighbors[i]); // new row and new col;
                             int c = (col + neighbors[j]);
 
                             // Check the validity of the neighboring cell
