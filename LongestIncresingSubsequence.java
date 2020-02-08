@@ -1,4 +1,45 @@
+//import java.util.Arrays;
+
 public class LongestIncresingSubsequence {
+
+    /**
+     * DP with Binary Search approach
+     * Time - O(n log n)
+     * Space - O(n)
+     * @param nums
+     * @return
+     */
+    public int lengthOfLIS2(int[] nums) {
+        int[] dp = new int[nums.length];
+        int len = 0;
+        for (int num : nums) {
+            int i = binarySearch(dp, 0, len, num); // if not found, will return a negative number of where the insertion should be,
+            if (i < 0) {
+                i = -(i + 1); // convert that negative number back to the actual insertion index
+            }
+            dp[i] = num; // insert or add that number into the dp array,
+            if (i == len) {
+                len ++; // if a number is added, then i == len, because i the most could == (len - 1);
+            }
+        }
+        return len;
+    }
+
+    private static int binarySearch(int[] arr, int s, int e, int target) {
+        int start = s;
+        int end = e - 1; // e is exclusive of the ending index thus need to -1 in order to get the actual last index.
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            if (arr[mid] == target) {
+                return mid;
+            } else if (arr[mid] > target) {
+                end = mid - 1;
+            } else {
+                start = mid + 1;
+            }
+        }
+        return - start - 1; // if not found, will provide an index that is (-(insertion index) - 1);
+    }
 
     /**
      * DP with Binary Search approach
