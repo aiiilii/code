@@ -6,7 +6,7 @@ public class DesignTicTacToe {
     private int antiDiagonal;
 
     public DesignTicTacToe(int n) {
-        rows = new int[n];
+        rows = new int[n]; // n rows and n cols;
         cols = new int[n];
     }
 
@@ -29,11 +29,11 @@ public class DesignTicTacToe {
         rows[row] += toAdd;
         cols[col] += toAdd;
 
-        if (row == col) {
+        if (row == col) { // diagonal
             diagonal += toAdd;
         }
 
-        if (col == cols.length - row - 1) {
+        if (col == cols.length - row - 1) { // ex: row + col = 3, then col = 3 - row, then col = cols.length - 1 - row;
             antiDiagonal += toAdd;
         }
 
