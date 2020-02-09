@@ -9,6 +9,12 @@ public class DiameterOfBinaryTree {
         TreeNode(int x) { val = x; }
     }
 
+    /**
+     * Time - O(n), we visit each node once;
+     * Space - O(n), the size of out implicit call stack during our dfs;
+     * @param root
+     * @return
+     */
     public int diameterOfBinaryTree(TreeNode root) {
         maxDepth(root);
         return max;
