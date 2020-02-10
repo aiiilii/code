@@ -1,6 +1,12 @@
 public class ReorganizeString {
 
     /**
+     * Consider this example: "aaabbbcdd", we will construct the string in this way:
+     * a _ a _ a _ _ _ _ // fill in "a" at position 0, 2, 4
+     * a b a _ a _ b _ b // fill in "b" at position 6, 8, 1
+     * a b a c a _ b _ b // fill in "c" at position 3
+     * a b a c a d b d b // fill in "d" at position 5, 7
+     * 
      * Time - O(n), fill hash[], find the letter, white results into char array
      * Space - O(N + 26), result + hash[]
      * @param S
