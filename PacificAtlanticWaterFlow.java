@@ -16,22 +16,22 @@ public class PacificAtlanticWaterFlow {
         int rows = matrix.length;
         int cols = matrix[0].length;
 
-        boolean[][] pacific = new boolean[rows][cols];
-        boolean[][] atlantic = new boolean[rows][cols];
+        boolean[][] pacific = new boolean[rows][cols]; // stores that pacific can reach;
+        boolean[][] atlantic = new boolean[rows][cols]; // stores that atlantic can reach;
 
         for (int i =0; i < rows; i++) {
-            explore(pacific, matrix, i, 0);
-            explore(atlantic, matrix, i, cols - 1);
+            explore(pacific, matrix, i, 0); // pacific left side;
+            explore(atlantic, matrix, i, cols - 1); // atlantic right side;
         }
 
         for (int j = 0; j < cols; j++) {
-            explore(pacific, matrix, 0, j);
-            explore(atlantic, matrix, rows - 1, j);
+            explore(pacific, matrix, 0, j); // pacific top side;
+            explore(atlantic, matrix, rows - 1, j); // atlantic bottom side;
         }
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                if (pacific[i][j] == true && atlantic[i][j] == true) {
+                if (pacific[i][j] == true && atlantic[i][j] == true) { // if both pacific and atlantic can reach i, j, then add into list
                     List<Integer> temp = new ArrayList<Integer>();
                     temp.add(i);
                     temp.add(j);
@@ -43,11 +43,11 @@ public class PacificAtlanticWaterFlow {
     }
 
     private void explore(boolean[][] grid, int[][] matrix, int i, int j) {
-        grid[i][j] = true;
+        grid[i][j] = true; // change to true if reachable;
         for (int k = 0; k < 4; k++) {
             if ((i + dy[k] < grid.length && i + dy[k] >= 0) && (j + dx[k] < grid[0].length && j + dx[k] >= 0) && 
-            grid[i + dy[k]][j + dx[k]] == false && matrix[i + dy[k]][j + dx[k]] >= matrix[i][j]) {
-                explore(grid, matrix, i + dy[k], j + dx[k]);
+            grid[i + dy[k]][j + dx[k]] == false && matrix[i + dy[k]][j + dx[k]] >= matrix[i][j]) { // if in bounds, AND the next == false, which means have not visited, AND the next is larger than curr value on the given matrix;
+                explore(grid, matrix, i + dy[k], j + dx[k]); // then keep exploring with the next indices;
             }
         }
     }

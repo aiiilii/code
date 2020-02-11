@@ -22,30 +22,30 @@ public class ReorganizeString {
         int letter = 0;
         for (int i = 0; i < hash.length; i++) {
             if (hash[i] > max) {
-                max = hash[i];
-                letter = i; // find the letter with largest occurence;
+                max = hash[i]; // find the max count of the largest occurance;
+                letter = i; // find the letter's index of the largest occurence;
             }
         }
 
-        if (max > (S.length() + 1) / 2) {
+        if (max > (S.length() + 1) / 2) { // if the max count is less than half, then reorganization cannot be done;
             return "";
         }
 
         char[] res = new char[S.length()];
         int index = 0;
 
-        while (hash[letter] > 0) {
-            res[index] = (char) (letter + 'a'); // put the letter into even index numbe (0, 2, 4 ...) char array;
+        while (hash[letter] > 0) { // hash[letter] is the max count on the first run and will decrement each time;
+            res[index] = (char) (letter + 'a'); // put the letter into even index number (0, 2, 4 ...) char array;
             index += 2;
             hash[letter] --;
         }
 
         for (int i = 0; i < hash.length; i++) { // put the rest into the array;
             while (hash[i] > 0) {
-                if (index >= res.length) {
-                    index = 1;
+                if (index >= res.length) { // when out of range for even indices,
+                    index = 1; // have index start at 1 and put letters in odd indices;
                 }
-                res[index] = (char) (i + 'a');
+                res[index] = (char) (i + 'a'); // keeping putting the letter into even number index until index >= res.length, which is either the last index or out of range;
                 index += 2;
                 hash[i] --;
             }
