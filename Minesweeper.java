@@ -1,5 +1,14 @@
+import java.util.Queue;
+import java.util.LinkedList;
+
 public class Minesweeper {
 
+    /**
+     * DFS
+     * @param board
+     * @param click
+     * @return
+     */
     public char[][] updateBoard(char[][] board, int[] click) {
         if (board == null || board.length == 0 || board[0].length == 0 || click.length != 2) {
             return board;
@@ -45,5 +54,63 @@ public class Minesweeper {
             }
         }
         return count;
+    }
+
+
+
+    /**
+     * BFS
+     * @param board
+     * @param click
+     * @return
+     */
+    public char[][] updateBoard1(char[][] board, int[] click) {
+        if (board == null || board.length == 0 || board[0].length == 0 || click.length != 2) {
+            return board;
+        }
+        int[][] dir = new int[][] {{-1,0},{1,0},{0,-1},{0,1},{-1,-1},{1,1},{-1,1},{1,-1}};
+
+        int m = board.length;
+        int n = board[0].length;
+
+        if(board[click[0]][click[1]] == 'M'){ // Mine
+            board[click[0]][click[1]] = 'X';
+            return board;
+        }
+
+        Queue<int[]> queue = new LinkedList<int[]>();
+        queue.offer(click);
+
+        while (!queue.isEmpty()) {
+            int[] cell = queue.poll();
+            int row = cell[0];
+            int col = cell[1];
+
+            
+            int count = 0; // stores number of mines;
+
+            for (int[] d : dir) {
+                int r = row + d[0];
+                int c = col + d[1];
+                if ((r >= 0 && r < m) && (c >= 0 && c < n) && (board[r][c] == 'M')) {
+                    count ++;
+                }
+            }
+
+            if (count > 0) { // if it is not a 'B', then stop further BFS and mark it the (char) (number) of count of surrounding mines;
+                board[row][col] = (char) (count +'0');
+            } else { // continue BFS to adjacent cells;
+                board[row][col] = 'B';
+                for (int[] d : dir) {
+                    int r = row + d[0];
+                    int c = col + d[1];
+                    if ((r >= 0 && r < m) && (c >= 0 && c < n) && (board[r][c] == 'E')) {
+                        queue.offer(new int[] {r, c});
+                        board[r][c] = 'B'; // avoid added again;
+                    }
+                }
+            }
+        }
+        return board;
     }
 }
