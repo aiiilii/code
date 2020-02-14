@@ -23,7 +23,7 @@ public class LowestCommonAncestorOfBinaryTree {
      * @return
      */
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if (root == null || root == p || root == q) {
+        if (root == null || root == p || root == q) { //if root == p or root == q, meaning p or q will be the lowest common ancestor respectively;
             return root;
         }
         TreeNode left = lowestCommonAncestor(root.left, p, q);
