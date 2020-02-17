@@ -21,7 +21,7 @@ public class TimeBasedKeyValueStore {
      */
     public void set(String key, String value, int timestamp) {
         if (!map.containsKey(key)) {
-            map.put(key, new TreeMap<Integer, String>());
+            map.put(key, new TreeMap<Integer, String>()); // can also use map.put(key, map.getOrDefault(key, new TreeMap<Integer, String>()));
         }
         map.get(key).put(timestamp, value);
     }
@@ -39,7 +39,7 @@ public class TimeBasedKeyValueStore {
         TreeMap<Integer, String> tree = map.get(key);
         Integer t = tree.floorKey(timestamp); // tree.floorKey returns the greatest key less than or equal to the given key, or null if there is no such key;
         if (t != null) {
-            return tree.get(t);
+            return tree.get(t); // look for the result back in the tree;
         } else {
             return "";
         }
