@@ -2,7 +2,8 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Stack;
+import java.util.Queue;
+import java.util.LinkedList;
 
 public class LowestCommonAncestorOfBinaryTree {
 
@@ -10,7 +11,7 @@ public class LowestCommonAncestorOfBinaryTree {
         int val;
         TreeNode left;
         TreeNode right;
-        TreeNode(int x) { val = x; }
+        TreeNode(final int x) { val = x; }
     }
 
     /**
@@ -22,12 +23,12 @@ public class LowestCommonAncestorOfBinaryTree {
      * @param q
      * @return
      */
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    public TreeNode lowestCommonAncestor(final TreeNode root, final TreeNode p, final TreeNode q) {
         if (root == null || root == p || root == q) { //if root == p or root == q, meaning p or q will be the lowest common ancestor respectively;
             return root;
         }
-        TreeNode left = lowestCommonAncestor(root.left, p, q);
-        TreeNode right = lowestCommonAncestor(root.right, p, q);
+        final TreeNode left = lowestCommonAncestor(root.left, p, q);
+        final TreeNode right = lowestCommonAncestor(root.right, p, q);
 
         if (left == null) {
             return right;
@@ -48,34 +49,34 @@ public class LowestCommonAncestorOfBinaryTree {
      * @param q
      * @return
      */
-    public TreeNode lowestCommonAncestor1(TreeNode root, TreeNode p, TreeNode q) {
+    public TreeNode lowestCommonAncestor1(final TreeNode root, TreeNode p, TreeNode q) {
         if (root == null || root == p || root == q) {
             return root;
         }
 
-        Map<TreeNode, TreeNode> parent = new HashMap<TreeNode, TreeNode>();
-        Stack<TreeNode> stack = new Stack<TreeNode>();
-        parent.put(root, null);
-        stack.push(root);
+        final Map<TreeNode, TreeNode> parent = new HashMap<TreeNode, TreeNode>(); // TreeNode KEY is child, TreeNode VALUE is parent;
+        final Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        parent.put(root, null); // construct the parent hashmap using queue, can also use stack, as long as finish all child-parent relationships;
+        queue.offer(root);
 
         while (!parent.containsKey(p) || !parent.containsKey(q)) {
-            TreeNode node = stack.pop();
+            final TreeNode node = queue.poll();
             if (node.left != null) {
                 parent.put(node.left, node);
-                stack.push(node.left);
+                queue.offer(node.left);
             }
             if (node.right != null) {
                 parent.put(node.right, node);
-                stack.push(node.right);
+                queue.offer(node.right);
             }
         }
 
-        Set<TreeNode> ancestors = new HashSet<TreeNode>();
+        final Set<TreeNode> ancestors = new HashSet<TreeNode>(); // put all ancestors of p into the set;
         while (p != null) {
             ancestors.add(p);
-            p = parent.get(p);
+            p = parent.get(p); // traverse p up the parent relationship using the constructed parent hashmap;
         }
-        while (!ancestors.contains(q)) {
+        while (!ancestors.contains(q)) { // traverse q up using the hashmap until the ancester set contains q, then return q as the result;
             q = parent.get(q);
         }
         return q;
