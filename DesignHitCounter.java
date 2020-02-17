@@ -9,7 +9,7 @@ public class DesignHitCounter {
      * If it is not current time, it means it is 300s or 600s... ago and need to reset to 1.
      */
     public DesignHitCounter() {
-        times = new int[300];
+        times = new int[300]; // 300 second == 5 mins;
         hits = new int[300];
     }
 
@@ -35,7 +35,7 @@ public class DesignHitCounter {
     public int getHits(int timestamp) {
         int total = 0;
         for (int i = 0; i < 300; i++) {
-            if (timestamp - times[i] < 300) {
+            if (timestamp - times[i] < 300) { // within the last 5 mins, do not need to count the ones outside of 5 min range;
                 total += hits[i];
             }
         }
