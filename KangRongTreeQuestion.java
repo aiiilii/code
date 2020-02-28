@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class KangRongTreeQuestion {
 
     public class Node {
@@ -18,6 +21,7 @@ public class KangRongTreeQuestion {
 
     /**
      * Linking nodes level by level
+     * Not using Queue
      * Time - O(n)
      * Space - O(1)
      * @param root
@@ -43,6 +47,41 @@ public class KangRongTreeQuestion {
             }
             
             queueStart = queueStart.next;
+        }
+        return root;
+    }
+
+
+    /**
+     * Using Queue
+     * Time - O(n)
+     * Space - O(n)
+     * @param root
+     * @return
+     */
+    public Node connect1(Node root) {
+        if (root == null) {
+            return root;
+        }
+
+        Queue<Node> queue = new LinkedList<Node>();
+        queue.offer(root);
+        Node temp = null;
+
+        while (!queue.isEmpty()) {
+            Node curr = queue.poll();
+            if (temp == null) {
+                temp = curr;
+            } else {
+                temp.next = curr;
+                temp = curr;
+            }
+            if (curr.left != null) {
+                queue.offer(curr.left);
+            }
+            if (curr.right != null) {
+                queue.offer(curr.right);
+            } 
         }
         return root;
     }
