@@ -102,14 +102,14 @@ public class MergeKSortedLists {
     }
 
     public static void main(String[] args) {
-        ListNode[] newList = new ListNode[0];
-        System.out.println(newList.length);
-        try {
-            ListNode[] nullArray = null;
-            System.out.println(nullArray.length);    
-        } catch (NullPointerException e) {
-            System.out.println("Null array");
-        }
+        // ListNode[] newList = new ListNode[0];
+        // System.out.println(newList.length);
+        // try {
+        //     ListNode[] nullArray = null;
+        //     System.out.println(nullArray.length);    
+        // } catch (NullPointerException e) {
+        //     System.out.println("Null array");
+        // }
         
 
     }

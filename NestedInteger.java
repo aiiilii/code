@@ -36,13 +36,14 @@ public class NestedInteger implements Iterator<Integer> {
              return;
          }
 
-         for (NestedInteger in : list) {
-             if (in.isInteger()) {
-                 queue.offer(in.getInteger());
-             } else {
-                 helper(in.getList());
-             }
-         }
+        // Uncomment the following to work:
+        //  for (NestedInteger in : list) {
+        //      if (in.isInteger()) {
+        //          queue.offer(in.getInteger());
+        //      } else {
+        //          helper(in.getList());
+        //      }
+        //  }
      }
 
      @Override
