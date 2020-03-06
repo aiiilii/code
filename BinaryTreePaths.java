@@ -10,6 +10,12 @@ public class BinaryTreePaths {
         TreeNode(int x) { val = x;}
     }
 
+    /**
+     * Time - O(n), visit each node once;
+     * Space - O(n), call stack, unbalanced tree would be O(n), balanced tree would be O(log n);
+     * @param root
+     * @return
+     */
     public List<String> binaryTreePaths(TreeNode root) {
         List<String> paths = new ArrayList<>();
         if (root == null) {
