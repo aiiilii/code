@@ -8,6 +8,34 @@ public class FlattenBinaryTreeToLinkedlist {
     }
 
 
+    /**
+     * Iterative
+     * Time - O(n), process each node twice;
+     * Space - O(1)
+     * @param root
+     */
+    public void flatten1(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+
+        TreeNode node = root;
+
+        while (node != null) {
+            if (node.left != null) {
+                TreeNode rightMost = node.left;
+
+                while (rightMost.right != null) {
+                    rightMost = rightMost.right;
+                }
+                rightMost.right = node.right;
+                node.right = node.left;
+                node.left = null;
+            }
+            node = node.right;
+        }
+    }
+
 
 
     /**
