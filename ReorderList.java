@@ -62,4 +62,50 @@ public class ReorderList {
             l2 = next;
         }
     }
+
+
+
+
+
+
+    public void reorderList1(ListNode head) {
+        if (head == null || head.next == null || head.next.next == null) {
+            return;
+        } 
+        
+        ListNode slow = head;
+        ListNode fast = head;
+        
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        slow = reverse1(slow);
+        fast = head;
+        
+        while (fast != null && slow != null) {
+            ListNode fastNext = fast.next;
+            fast.next = slow;
+            fast = fastNext;
+            ListNode slowNext = slow.next;
+            slow.next = fastNext;
+            slow = slowNext;
+        }
+        if (fast != null && fast.next != null) {
+            fast.next = null;    
+        }
+        if (slow != null && slow.next != null) {
+            slow.next = null;
+        }
+    }
+    
+    private ListNode reverse1(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode newHead = reverse1(head.next);
+        head.next.next = head;
+        head.next = null;
+        return newHead;
+    }
 }
