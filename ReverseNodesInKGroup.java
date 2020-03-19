@@ -47,8 +47,8 @@ public class ReverseNodesInKGroup {
             prev = curr;
             curr = next;
         }
-        begin.next = prev;
-        first.next = curr;
+        begin.next = prev; // begin is before the first node in the segment;
+        first.next = curr; // curr is after the last node in the segment;
 
         return first;
     }
