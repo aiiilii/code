@@ -25,4 +25,39 @@ public class KthLargestElementInAStream {
         return minHeap.peek();
     }
 
+
+
+
+    
+
+
+    public KthLargestElementInAStream(int k, int[] nums, int nothing) { // same construction as previous solution;
+        minHeap = new PriorityQueue<Integer>();
+        this.k = k;
+        
+        int minSize = Math.min(k, nums.length);
+        
+        for (int i = 0; i < minSize; i++) {
+            minHeap.offer(nums[i]);
+        }
+        
+        for (int i = k; i < nums.length; i++) {
+            if (minHeap.peek() < nums[i]) {
+                minHeap.poll();
+                minHeap.offer(nums[i]);
+            }
+        }
+    }
+
+    public int add1(int val) {
+        if (minHeap.size() < k) {
+            minHeap.offer(val);
+        } else {
+            if (minHeap.peek() < val) {
+                minHeap.poll();
+                minHeap.offer(val);
+            }
+        }
+        return minHeap.peek();
+    }
 }
