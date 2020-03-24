@@ -7,28 +7,28 @@ public class SearchA2DMatrix {
      * @return
      */
     public boolean searchMatrix2(int[][] matrix, int target) {
-        int m = matrix.length;
-        if (m == 0) {
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
             return false;
         }
+        
+        int m = matrix.length;
         int n = matrix[0].length;
 
         int left = 0;
         int right = m * n - 1; // if a matrix is m * n, the array version of the matrix would have lenght m * n, thus the last index of the array would be m * n - 1
         int pivotIdx;
         int pivotElement;
+
         while (left <= right) {
             pivotIdx = left + (right - left) / 2;
             pivotElement = matrix[pivotIdx / n][pivotIdx % n]; // row = idx / n; col = idx % n
+
             if (target == pivotElement) {
                 return true;
-            }
-            else {
-                if (target < pivotElement) {
-                    right = pivotIdx - 1;
-                } else {
-                    left = pivotIdx + 1;
-                }
+            } else if (target < pivotElement) {
+                right = pivotIdx - 1;
+            } else {
+                left = pivotIdx + 1;
             }
         }
         return false;
