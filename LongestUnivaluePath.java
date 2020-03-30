@@ -37,8 +37,8 @@ public class LongestUnivaluePath {
         if (node.right != null && node.right.val == node.val) {
             arrowRight += right + 1;
         }
-        res = Math.max(res, arrowLeft + arrowRight);
+        res = Math.max(res, arrowLeft + arrowRight); // res is the max of the sum of left and right;
 
-        return Math.max(arrowLeft, arrowRight);
+        return Math.max(arrowLeft, arrowRight); // only return the larger of left or right because can only use 1 side of the tree;
     }
 }
