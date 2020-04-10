@@ -12,7 +12,7 @@ public class RotateImage {
         [2,5,8],
         [3,6,9]
 
-        2/ reverse columns: swap( matrix[][i], matrix[][j] )
+        2/ reverse each row: swap( matrix[i][], matrix[i][] )
         [7,4,1],
         [8,5,2],
         [9,6,3]
@@ -35,9 +35,9 @@ public class RotateImage {
                 matrix[j][i] = temp;
             }
         }
-
+        // recerse each row
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n / 2; j++) {
+            for (int j = 0; j < n / 2; j++) { // j stops at half way
                 int temp = matrix[i][j];
                 matrix[i][j] = matrix[i][n - j - 1];
                 matrix[i][n - j - 1] = temp;
