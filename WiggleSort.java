@@ -1,6 +1,8 @@
 public class WiggleSort {
 
     /**
+     * Bubble sort approach
+     * Use boolean less as indicator of odd or even index
      * Time - O(n)
      * Space - O(1)
      * @param nums
