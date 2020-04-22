@@ -2,6 +2,11 @@ import java.util.Arrays;
 
 public class YearWithHighestPopulation {
 
+    /**
+     * Time - O(n log n)
+     * Space - O(n)
+     * @param args
+     */
     public static int yearWithHighestPopulation(int[][] years) {
         if (years == null || years.length == 0 || years[0].length != 2) {
             return 0;
