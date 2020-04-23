@@ -11,6 +11,7 @@ public class SerializeAndDeserializeBinaryTree {
     }
 
     /**
+     * Iterative approach
      * Time - O(n)
      * Space - O(n)
      * @param root
@@ -36,12 +37,12 @@ public class SerializeAndDeserializeBinaryTree {
                 curr = queue.poll();
                 if (curr != null) {
                     sb.append(curr.val);
-                    queue.offer(curr.left);
+                    queue.offer(curr.left); // append even if == null;
                     queue.offer(curr.right);
                 } else {
-                    sb.append(n);
+                    sb.append(n); // append "null"
                 }
-                sb.append(sep);
+                sb.append(sep); // append ","
             }
         }
         return sb.toString();
@@ -70,7 +71,7 @@ public class SerializeAndDeserializeBinaryTree {
         Queue<TreeNode> queue = new LinkedList<TreeNode>();
         queue.offer(root);
 
-        int index = 1;
+        int index = 1; // use index to mark left or right
 
         while (!queue.isEmpty()) {
             int size = queue.size();
@@ -78,9 +79,9 @@ public class SerializeAndDeserializeBinaryTree {
             for (int i = 0; i < size; i++) {
                 curr = queue.poll();
 
-                for (int j = index; j < index + 2 && j < vals.length; j++) {
+                for (int j = index; j < index + 2 && j < vals.length; j++) { // only increment 2 for left and right;
                     if (vals[j].equals(n)) {
-                        if (j % 2 == 1) {
+                        if (j % 2 == 1) { 
                             curr.left = null;
                         } else {
                             curr.right = null;
