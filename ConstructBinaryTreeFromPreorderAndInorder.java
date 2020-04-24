@@ -34,10 +34,6 @@ public class ConstructBinaryTreeFromPreorderAndInorder {
             return null;
         }
 
-        if (inStart == inEnd) {
-            return new TreeNode(inorder[inStart]);
-        }
-
         int rootVal = preorder[preStart];
         int inOrderIndex = indexMap.get(rootVal);
 
