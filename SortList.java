@@ -7,6 +7,65 @@ public class SortList {
     }
 
     /**
+     * Merge Sort approach
+     * Time - O(n log n)
+     * Space - O(log n), for the recursion stack
+     * @param head
+     * @return
+     */
+    public ListNode sortList1(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        ListNode prev = null;
+        ListNode slow = head;
+        ListNode fast = head;
+
+        // Step 1: cut the list to two halves
+        while (fast != null && fast.next != null) {
+            prev = slow;
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        prev.next = null;
+
+        // Step 2: sort each half
+        ListNode l1 = sortList1(head);
+        ListNode l2 = sortList1(slow);
+
+        // Step 3: merge l1 and l2
+        return merge(l1, l2);
+    }
+
+    private ListNode merge(ListNode l1, ListNode l2) {
+        ListNode dummy = new ListNode(0);
+        ListNode l3 = dummy;
+
+        while (l1 != null && l2 != null) {
+            if (l1.val < l2.val) {
+                l3.next = l1;
+                l1 = l1.next;
+            } else {
+                l3.next = l2;
+                l2 = l2.next;
+            }
+            l3 = l3.next;
+        }
+        if (l1 != null) {
+            l3.next = l1;
+        }
+        if (l2 != null) {
+            l3.next = l2;
+        }
+        return dummy.next;
+    }
+
+
+
+    
+    /**
+     * QuickSort approach
      * Time - O(n log n)
      * Space - O(1)
      * @param head
