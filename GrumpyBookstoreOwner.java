@@ -18,12 +18,12 @@ public class GrumpyBookstoreOwner {
         for (int i = 0; i < customers.length; i++) {
             totalCustomer += customers[i];
             totalGrumpy += customers[i] * grumpy[i];
-            save += customers[i] * grumpy[i];
+            save += customers[i] * grumpy[i]; // save comes from grumpies, does not record the satisfied customers;
             if (i >= X) {
-                save -= customers[i - X] * grumpy[i - X];
+                save -= customers[i - X] * grumpy[i - X]; // sliding window, i - X is the previous one
             }
-            maxSave = Math.max(save, maxSave);
+            maxSave = Math.max(save, maxSave); // thus, maxSave does not include the satisfied customers either, 
         }
-        return totalCustomer - totalGrumpy + maxSave;
+        return totalCustomer - totalGrumpy + maxSave; // so when added at the end, do not need to subtract the satisfied customers (not added twice, only added once);
     }
 }
