@@ -19,7 +19,7 @@ public class GrumpyBookstoreOwner {
             totalCustomer += customers[i];
             totalGrumpy += customers[i] * grumpy[i];
             save += customers[i] * grumpy[i]; // save comes from grumpies, does not record the satisfied customers;
-            if (i >= X) {
+            if (i >= X) { 
                 save -= customers[i - X] * grumpy[i - X]; // sliding window, i - X is the previous one
             }
             maxSave = Math.max(save, maxSave); // thus, maxSave does not include the satisfied customers either, 
