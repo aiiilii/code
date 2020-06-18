@@ -8,6 +8,8 @@ public class DesignTicTacToe {
     public DesignTicTacToe(int n) {
         rows = new int[n]; // n rows and n cols;
         cols = new int[n];
+        diagonal = 0;
+        antiDiagonal = 0;
     }
 
     /** Player {player} makes a move at ({row}, {col}).
